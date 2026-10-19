@@ -4,10 +4,23 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+const allowedOrigins = (process.env.CORS_ORIGIN || "*")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin:"https://vidora-v1.vercel.app",
-    // origin: process.env.CORS_ORIGIN || "https://vidora-v1.vercel.app",
+    origin: (origin, callback) => {
+      if (
+        !origin ||
+        allowedOrigins.includes("*") ||
+        allowedOrigins.includes(origin)
+      ) {
+        return callback(null, true);
+      }
+      callback(new Error(`Origin ${origin} not allowed by CORS`));
+    },
     credentials: true,
   })
 );
