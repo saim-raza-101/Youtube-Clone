@@ -4,11 +4,13 @@
 
 ### A modern, premium full-stack video streaming platform
 
-Built with the **MERN stack**, Vidora is a production-quality video platform featuring JWT authentication, Cloudinary-backed uploads & streaming, comments, likes, playlists, subscriptions, channel analytics, watch history, and a polished, theme-aware React interface.
+**Team: 5 Ninjas**
 
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE) [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev) [![Node](https://img.shields.io/badge/Node-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org) [![Express](https://img.shields.io/badge/Express-5-000000?logo=express&logoColor=white)](https://expressjs.com) [![MongoDB](https://img.shields.io/badge/MongoDB-8-47A248?logo=mongodb&logoColor=white)](https://www.mongodb.com) [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/SaimRaza885/Vidora/pulls)
+Built with the **MERN stack**, Vidora is a production-quality video platform featuring JWT authentication, Cloudinary-backed uploads & streaming, comments, likes, playlists, subscriptions, channel management, and more.
 
-[Features](#✨-features) · [Tech Stack](#🛠-tech-stack) · [Architecture](#🏗-architecture) · [Screenshots](#📸-screenshots) · [Getting Started](#🚀-getting-started) · [API Reference](#📡-api-reference) · [Frontend Routes](#🗺-frontend-routes) · [Project Structure](#📁-project-structure) · [Scripts](#🧰-scripts--tooling) · [Deployment](#☁️-deployment) · [Contributing](#🤝-contributing) · [Roadmap](#🗺-roadmap) · [FAQ](#❓-faq) · [License](#📜-license)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE) [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev) [![Node](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org)
+
+[Features](#✨-features) · [Tech Stack](#🛠-tech-stack) · [Architecture](#🏗-architecture) · [Screenshots](#📸-screenshots) · [Getting Started](#🚀-getting-started) · [API Reference](#📡-api-reference)
 
 </div>
 
@@ -19,9 +21,9 @@ Built with the **MERN stack**, Vidora is a production-quality video platform fea
 
 | Concept / Landing | Home Feed | Media & Design |
 |---|---|---|
-| <img src="media/Gemini_Generated_Image_h7c6d6h7c6d6h7c6.png" width="320" /> | <img src="media/Gemini_Generated_Image_tq0u3etq0u3etq0u.png" width="320" /> | <img src="media/Gemini_Generated_Image_k7v19ok7v19ok7v1.png" width="320" /> |
+| <img src="media/Gemini_Generated_Image_h7c6d6h7c6d6h7c6.png" width="320" /> | <img src="media/Gemini_Generated_Image_tq0u3etq0u3etq0u.png" width="320" /> | <img src="media/Gemini_Generated_Image[...]
 
-*A visual preview of the platform's premium, theme-aware interface.*
+* A visual preview of the platform's premium, theme-aware interface.*
 
 ## ✨ Features
 
@@ -94,7 +96,7 @@ Vidora is a **monorepo** with two independent applications that communicate over
 │                                                               │
 │  ┌──────────┐   ┌──────────┐   ┌───────────┐   ┌──────────┐  │
 │  │  Pages   │──▶│  Context │──▶│  Services │──▶│  Axios   │  │
-│  │ (store)  │   │   (Auth) │   │ (API)     │   │   client │  │
+│  │ (store)  │   │  (Auth)  │   │ (API)     │   │   client │  │
 │  └──────────┘   └──────────┘   └───────────┘   └──────────┘  │
 │                                   │                           │
 └───────────────────────────────────│───────────────────────────┘
@@ -105,7 +107,7 @@ Vidora is a **monorepo** with two independent applications that communicate over
 │                        http://localhost:8000                  │
 │                                                               │
 │  ┌───────────┐   ┌───────────┐   ┌─────────┐   ┌──────────┐  │
-│  │ Routes    │→ │ Middleware │ → │Controllers│ →│  Models  │  │
+│  │ Routes    │→ │ Middleware │ → │Controllers│ →│  Models  ││
 │  │ (REST)    │   │ (Auth/Multer)│  │ (logic)   │  │ (Mongoose)││
 │  └───────────┘   └───────────┘   └─────────┘   └──────────┘  │
 │                                                               │
