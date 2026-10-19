@@ -7,8 +7,11 @@ import { GenerateAccessAndRefreshToken } from './user.controllers.js';
 
 /** Absolute frontend origin for OAuth redirects (never allow relative "undefined/...") */
 const getFrontendUrl = () => {
-  const url = process.env.FRONTEND_URL || process.env.CORS_ORIGIN || 'http://localhost:5173';
-  return String(url).replace(/\/$/, '');
+  const raw =
+    process.env.FRONTEND_URL ||
+    (process.env.CORS_ORIGIN || '').split(",")[0] ||
+    "http://localhost:5173";
+  return raw.trim().replace(/\/$/, "");
 };
 
 /**
@@ -119,10 +122,6 @@ export const githubCallback = asyncHandler(async (req, res) => {
 
   const frontendUrl = getFrontendUrl();
 
-  // #region agent log
-  fetch('http://127.0.0.1:7378/ingest/242d3439-a918-4039-9cd4-63be8c550d3c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'192050'},body:JSON.stringify({sessionId:'192050',runId:'post-fix',hypothesisId:'A',location:'oauth.controllers.js:githubCallback',message:'OAuth callback env check',data:{hasFrontendUrl:Boolean(process.env.FRONTEND_URL),rawFrontendUrl:process.env.FRONTEND_URL??null,resolvedFrontendUrl:frontendUrl,redirectIsAbsolute:frontendUrl.startsWith('http'),hasCode:Boolean(code),hasState:Boolean(state),hasOauthError:Boolean(error)},timestamp:Date.now()})}).catch(()=>{});
-  // #endregion
-  
   // Handle GitHub OAuth errors (user cancelled, etc.)
   if (error) {
     console.error('GitHub OAuth error:', error, error_description);
@@ -165,10 +164,6 @@ export const githubCallback = asyncHandler(async (req, res) => {
     
     // Generate JWT tokens
     const { accessToken: jwtToken, refreshToken } = await GenerateAccessAndRefreshToken(user._id);
-    
-    // #region agent log
-    fetch('http://127.0.0.1:7378/ingest/242d3439-a918-4039-9cd4-63be8c550d3c',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'192050'},body:JSON.stringify({sessionId:'192050',runId:'post-fix',hypothesisId:'C',location:'oauth.controllers.js:githubCallback:success',message:'Redirecting to frontend with token',data:{resolvedFrontendUrl:frontendUrl,targetPath:`${frontendUrl}/auth/callback`,hasJwt:Boolean(jwtToken)},timestamp:Date.now()})}).catch(()=>{});
-    // #endregion
 
     // Redirect to frontend with JWT token
     return res.redirect(
