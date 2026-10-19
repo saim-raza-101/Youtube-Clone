@@ -6,6 +6,14 @@
 
 **Team: 5 Ninjas**
 
+## 🥷 Team Five Ninjas
+
+**Five Ninjas** is a team of passionate full-stack developers who turn ideas into reality through creativity, collaboration, and innovation. We built **Vidora**, our software project, using the power of **vibe coding**—combining AI-assisted development, problem-solving, and rapid prototyping to bring our vision to life.
+
+We believe in building smart, user-friendly, and impactful digital solutions. Like ninjas, we work together with precision, adaptability, and a shared commitment to turning ambitious ideas into working software.
+
+**Five minds. One team. Infinite possibilities.** 🚀
+
 Built with the **MERN stack**, Vidora is a production-quality video platform featuring JWT authentication, Cloudinary-backed uploads & streaming, comments, likes, playlists, subscriptions, channel management, and more.
 
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE) [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev) [![Node](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org)
