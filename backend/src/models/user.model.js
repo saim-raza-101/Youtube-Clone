@@ -62,12 +62,12 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Compound index to prevent duplicate OAuth accounts (only for OAuth users with providerId)
+// Compound index to prevent duplicate OAuth accounts (only for OAuth users with non-empty providerId)
 userSchema.index(
   { authProvider: 1, providerId: 1 },
   {
     unique: true,
-    partialFilterExpression: { providerId: { $type: "string", $ne: "" } },
+    partialFilterExpression: { providerId: { $exists: true, $type: "string", $ne: "" } },
   }
 );
 
