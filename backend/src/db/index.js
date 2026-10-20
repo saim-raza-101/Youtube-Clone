@@ -15,6 +15,12 @@ export const DB_Connection = async () => {
       "!! MongoDB Connection Successfully !! DB HOST:",
       connectionInstance.connection.host
     );
+    try {
+      await mongoose.connection.collection("users").dropIndex("authProvider_1_providerId_1");
+      console.log("Dropped old index authProvider_1_providerId_1");
+    } catch (e) {
+      // ignore if index doesn't exist
+    }
   } catch (error) {
     console.error("FAILED TO CONNECT DATABASE >>>", error);
     throw error;
