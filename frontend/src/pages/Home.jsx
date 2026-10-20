@@ -15,7 +15,7 @@ export const Home = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [activeCategory, setActiveCategory] = useState('All')
-  const [showHero, setShowHero] = useState(true)
+  const [showHero, setShowHero] = useState(false)
   const [featuredVideo, setFeaturedVideo] = useState(null)
 
   const handleCategorySelect = (cat) => {
