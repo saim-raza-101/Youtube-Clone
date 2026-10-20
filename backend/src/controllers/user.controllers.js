@@ -38,23 +38,22 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   const localAvatarPath = req.files?.avatar?.[0]?.path;
-  if (!localAvatarPath) {
-    throw new ApiError(400, "Avatar image is required");
-  }
-
   const localCoverImagePath = req.files?.coverImage?.[0]?.path || req.files?.coverimage?.[0]?.path;
 
-  const avatar = await Cloudinary_File_Upload(localAvatarPath);
-  if (!avatar?.url) {
-    throw new ApiError(400, "Failed to upload avatar image");
+  let avatarData = { url: '', public_id: '' };
+  if (localAvatarPath) {
+    const avatar = await Cloudinary_File_Upload(localAvatarPath);
+    if (!avatar?.url) {
+      throw new ApiError(400, "Failed to upload avatar image");
+    }
+    avatarData = { url: avatar.url, public_id: avatar.public_id };
   }
-  const avatarData = { url: avatar.url, public_id: avatar.public_id };
 
   let coverImageData = { url: '', public_id: '' };
   if (localCoverImagePath) {
     const coverImage = await Cloudinary_File_Upload(localCoverImagePath);
     if (!coverImage?.url) {
-    throw new ApiError(400, "Failed to upload cover image");
+      throw new ApiError(400, "Failed to upload cover image");
     }
     coverImageData = { url: coverImage.url, public_id: coverImage.public_id };
   }
