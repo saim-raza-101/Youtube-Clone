@@ -62,8 +62,14 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// Compound index to prevent duplicate OAuth accounts
-userSchema.index({ authProvider: 1, providerId: 1 }, { unique: true, sparse: true });
+// Compound index to prevent duplicate OAuth accounts (only for OAuth users with providerId)
+userSchema.index(
+  { authProvider: 1, providerId: 1 },
+  {
+    unique: true,
+    partialFilterExpression: { providerId: { $type: "string", $ne: "" } },
+  }
+);
 
 //  Hash password before saving the user to DB
 userSchema.pre("save", async function (next) {
