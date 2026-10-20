@@ -19,10 +19,11 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
+  console.error("ERROR:", err.message, err.stack);
   return res.status(500).json({
     statusCode: 500,
     data: null,
-    message: "An unexpected error occurred",
+    message: process.env.NODE_ENV === "development" ? err.message : "An unexpected error occurred",
     success: false,
   });
 };
