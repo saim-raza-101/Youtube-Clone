@@ -74,6 +74,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     username: username.toLowerCase(),
     authProvider: 'local',
+    providerId: undefined,
   });
 
   if (!user) {
