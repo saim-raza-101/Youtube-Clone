@@ -1,6 +1,7 @@
 import { ApiError } from "./Api_Error.js";
 
 const errorHandler = (err, req, res, next) => {
+  console.error("ERROR_STACK:", err.stack);
   if (err instanceof ApiError) {
     return res.status(err.statusCode).json({
       statusCode: err.statusCode,
@@ -19,11 +20,11 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  console.error("ERROR:", err.message, err.stack);
+  console.error("ERROR:", err.message);
   return res.status(500).json({
     statusCode: 500,
     data: null,
-    message: process.env.NODE_ENV === "development" ? err.message : "An unexpected error occurred",
+    message: err.message || "An unexpected error occurred",
     success: false,
   });
 };
